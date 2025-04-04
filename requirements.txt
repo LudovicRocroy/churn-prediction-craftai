@@ -1,0 +1,7 @@
+craft_ai_sdk==0.59.0
+pandas
+scikit-learn
+xgboost
+catboost
+joblib
+tqdm
