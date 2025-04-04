@@ -17,3 +17,4 @@ using XGBoost, RandomForest and CatBoost models within the Craft.AI MLOps platfo
 - Training: daily at 2 AM
 - Prediction: daily at 3 AM
 
+Rem : based on https://www.kaggle.com/datasets/blastchar/telco-customer-churn?resource=download dataset
