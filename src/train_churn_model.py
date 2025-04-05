@@ -59,9 +59,9 @@ def train_churn_model():
     print(f"Train size: {X_train.shape[0]} rows, Test size: {X_test.shape[0]} rows, Total columns: {X_train.shape[1]}")
 
     models = {
-        "xgboost": XGBClassifier(eval_metric="logloss"),
-        "random-forest": RandomForestClassifier(),
-        "cat-boost": CatBoostClassifier(silent=True)
+        "xgboost": XGBClassifier(n_jobs=-1, eval_metric="logloss"),
+        "random-forest": RandomForestClassifier(n_jobs=-1),
+        "cat-boost": CatBoostClassifier(thread_count=-1, silent=True)
     }
 
     param_grids = {
@@ -96,7 +96,7 @@ def train_churn_model():
 
     for model_name, model in models.items():
         print(f"Début de l'entrainement pour {model_name}")
-        grid = RandomizedSearchCV(model, param_distributions=param_grids[model_name], n_iter=20, scoring="accuracy", cv=3, verbose=2, random_state=42)
+        grid = RandomizedSearchCV(model, param_distributions=param_grids[model_name], n_iter=20, scoring="accuracy", cv=3, verbose=2, random_state=42, n_jobs=-1)
         grid.fit(X_train, y_train)
         print(f"Fin de l'entrainement pour {model_name}")
 
